@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Banking.BLL;
 using Banking.DAL;
 using Banking.Models;
 
@@ -14,11 +15,13 @@ namespace Banking.Controllers
     public class BankerController : Controller
     {
         private BankingDBContext db = new BankingDBContext();
+        private BankerService service = new BankerService();
 
         // GET: Bankers
         public ActionResult Index()
         {
-            return View(db.Banker.ToList());
+            List<Banker> bankerList = db.Banker.Include(banker => banker.BankerType).ToList();
+            return View(bankerList);
         }
 
         // GET: Bankers/Details/5
@@ -28,11 +31,15 @@ namespace Banking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banker banker = db.Banker.Find(id);
+
+            // Banker banker = db.Banker.Find(id);
+            Banker banker = db.Banker.Include(a => a.BankerType).Where(a => a.ID == id).SingleOrDefault();
+
             if (banker == null)
             {
                 return HttpNotFound();
             }
+
             return View(banker);
         }
 
@@ -66,12 +73,20 @@ namespace Banking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Banker banker = db.Banker.Find(id);
+
+            //Banker banker = db.Banker.Include(a=>a.BankerType).Where(a => a.ID == id).FirstOrDefault();//.Include(b => b.BankerType);//.Find(id);
+            /*Banker banker = db.Banker.Find(id);
+            List<BankerType> bankerTypeList = db.BankerType.ToList<BankerType>();
+
             if (banker == null)
             {
                 return HttpNotFound();
             }
-            return View(banker);
+
+            ViewBag.BankerTypeList = bankerTypeList;
+            BankerView bankerView = new BankerView() { Banker = banker, BankerTypeList =bankerTypeList };*/
+            BankerView bankerView = service.getBankerView(id);
+            return View(bankerView);
         }
 
         // POST: Bankers/Edit/5

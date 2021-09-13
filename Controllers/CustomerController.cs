@@ -15,8 +15,11 @@ namespace Banking.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            var customerList = (from a in customerDB.Customer
-                                          select a).Distinct();
+            var customerList = (from a in customerDB.Customer 
+                                orderby a.LastName, a.FirstName
+                                          select a).Distinct().ToList();
+
+            //List<Customer> customerList = customerDB.Customer.OrderBy(cust => cust.LastName).ThenBy(cust => cust.FirstName).ToList<Customer>();
 
             return View(customerList);
         }
@@ -24,7 +27,25 @@ namespace Banking.Controllers
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            //List<Customer> custObjList = customerDB.Customer.Where(cust => cust.ID != id).OrderBy(cust => cust.LastName).ThenBy(cust => cust.FirstName).ToList<Customer>();
+            var custObj = (from a in customerDB.Customer
+                           where a.ID == id
+                           select a).FirstOrDefault();
+
+            // create new Customer obj
+            var newCustObj = (from a in customerDB.Customer join b in customerDB.Account on a.ID equals b.CustomerId
+                           where a.ID == id
+                           select new
+                           {
+                               a.FirstName,
+                               a.LastName,
+                               a.MiddleName,
+                               b.ID,
+                               b.accountType.Name,
+                               b.Amount
+                           }).ToList();
+
+            return View(custObj);
         }
 
         // GET: Customer/Create
@@ -52,7 +73,8 @@ namespace Banking.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var custObj = customerDB.Customer.Find(id);
+            return View(custObj);
         }
 
         // POST: Customer/Edit/5
@@ -62,6 +84,12 @@ namespace Banking.Controllers
             try
             {
                 // TODO: Add update logic here
+                var custObj = customerDB.Customer.Single(cust => cust.ID == id);
+                
+                if (TryUpdateModel(custObj))
+                { 
+                    customerDB.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -74,7 +102,7 @@ namespace Banking.Controllers
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(customerDB.Customer.Single(cust => cust.ID==id));
         }
 
         // POST: Customer/Delete/5

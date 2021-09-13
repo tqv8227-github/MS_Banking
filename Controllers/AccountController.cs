@@ -16,12 +16,39 @@ namespace Banking.Controllers
         private BankingDBContext db = new BankingDBContext();
 
         // GET: Accounts
-        public ActionResult Index()
+        public ActionResult Index(string sortType)
         {
-            List<Account> accountList = db.Account.Include(a =>a.accountType).Include(c => c.customer).OrderBy(c=>c.customer.FirstName).ToList<Account>();
-            return View(accountList);
-            //return View(db.Account.ToList());
+            // List<Account> accountList = db.Account.Include(a =>a.accountType).Include(c => c.customer).OrderBy(c=>c.customer.FirstName).ToList<Account>();
+            //return View(accountList);
+            List<Account> accountList = null;
+
+            if (sortType != null && sortType.Equals("Desc"))
+            {
+                accountList = db.Account.Include(a => a.accountType).Include(b => b.customer).OrderByDescending(c => c.customer.FirstName).ToList();
+                ViewBag.sortType = "Asc";
+            }
+            else
+            {
+                accountList = db.Account.Include(a => a.accountType).Include(b => b.customer).OrderBy(c => c.customer.FirstName).ToList();
+                ViewBag.sortType = "Desc";
+            }
+
+            ViewBag.accountList = accountList;
+            return View();
         }
+        // <summary>
+        public ActionResult SortByName(string sortType)
+        {
+            if (sortType.Equals("Desc"))
+            {
+               return View(db.Account.Include(a => a.accountType).Include(b => b.customer).OrderByDescending(c => c.customer.FirstName).ToList());
+            }
+
+            return View(db.Account.Include(a => a.accountType).Include(b => b.customer).OrderBy(c => c.customer.FirstName).ToList());
+            
+        }
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         // GET: Accounts/Details/5
         public ActionResult Details(int? id)

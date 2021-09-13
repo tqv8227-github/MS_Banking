@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Banking.Models
 {
-    public class Employee
+    public class Employee_bak
     {
         public int ID { get; set; }
         public string Name { get; set; }

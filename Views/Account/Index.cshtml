@@ -1,9 +1,10 @@
-﻿@model IEnumerable<Banking.Models.Account>
+﻿@*@model IEnumerable<Banking.Models.Account>*@
+@using Banking.Models;
 
-@{
-    Layout = null;
-}
-
+@*@{
+        Layout = null;
+    }
+*@
 <!DOCTYPE html>
 
 <html>
@@ -12,14 +13,17 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <p>&nbsp;</p>
+    <h4> Account Home</h4>
+    <p>&nbsp;</p>
+
     <table class="table">
         <tr>
             <th>
                 @*@Html.DisplayNameFor(model => model.customer.FirstName + " " + model.customer.LastName)*@
-                @Html.DisplayName("Customer's Name")
+                @*<a href="./index?sortType=<%ViewBag.sortType%>">@Html.DisplayName("Customer's Name")</a>*@
+                @Html.ActionLink("Customer's Name", "Index", new {sortType=ViewBag.sortType})
+
             </th>
             <th>
                 @Html.DisplayName("Account Number")
@@ -37,30 +41,33 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-    <tr>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.customer.FirstName+" "+item.customer.LastName)*@
-            @Html.DisplayName(item.customer.FirstName+" "+item.customer.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accountType.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-    }
-    
+
+        @foreach (Account item in ViewBag.accountList)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.customer.FirstName+" "+item.customer.LastName)*@
+                    @Html.DisplayName(item.customer.FirstName + " " + item.customer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.accountType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
     </table>
+
+    <div>@Html.ActionLink("Add new Account", "Create") || <a href="/">back to Main</a></div>
 </body>
 </html>

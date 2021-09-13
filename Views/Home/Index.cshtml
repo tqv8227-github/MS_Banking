@@ -1,11 +1,31 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
+<script>
+    $(function () {
+        $("h4").css("color", "black");
+        $("h4").click("fast",function () {
+            alert("click");
+        });
+    })
 
+</script>
 <div>
-    <h2>Index</h2>
-    <h2>Hello World!!!</h2>
+<div>
+    <h4>Main Menu</h4>
+</div>
+    <nav>
+        <ul>
+            @*<li><a href="/">Home</a></li>*@
+            <li><a href="/customer/index">Customers</a></li>
+            <li><a href="/customertransaction">Transactions</a></li>
+            <li><a href="/banker">Bankers</a></li>
+            <li><a href="/bankertypes">Banker Types</a></li>
+            <li><a href="/Account">Accounts</a></li>
+            <li><a href="/accounttype">Account Types</a></li>
+        </ul>
+    </nav>
 </div>
 

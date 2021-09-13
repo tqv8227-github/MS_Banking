@@ -9,29 +9,29 @@ namespace Banking.Controllers
 {
     public class EmployeeController : Controller
     {
-        public static List<Employee> empList = new List<Employee>{
-                   new Employee{
+        public static List<Employee_bak> empList = new List<Employee_bak>{
+                   new Employee_bak{
                       ID = 1,
                       Name = "William",
                       JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
                       Age = 23
                    },
 
-                   new Employee{
+                   new Employee_bak{
                       ID = 2,
                       Name = "Carson",
                       JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
                       Age = 45
                    },
 
-                   new Employee{
+                   new Employee_bak{
                       ID = 3,
                       Name = "Carson",
                       JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
                       Age = 37
                    },
 
-                   new Employee{
+                   new Employee_bak{
                       ID = 4,
                       Name = "Laura",
                       JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
@@ -40,10 +40,10 @@ namespace Banking.Controllers
         };
 
         [NonAction]
-        public List<Employee> getEmplist2()
+        public List<Employee_bak> getEmplist2()
         {
-            List<Employee> empListLocal = new List<Employee>();
-            foreach (Employee e in empList)
+            List<Employee_bak> empListLocal = new List<Employee_bak>();
+            foreach (Employee_bak e in empList)
             {
                 empListLocal.Add(e);
             }
@@ -66,7 +66,7 @@ namespace Banking.Controllers
         //[HttpDelete]
         public ActionResult Delete(int id)
         {
-            Employee currEmp = empList.Single(emp => emp.ID == id);
+            Employee_bak currEmp = empList.Single(emp => emp.ID == id);
 
             empList.Remove(currEmp);
             return RedirectToAction("Index");
@@ -91,7 +91,7 @@ namespace Banking.Controllers
             try
             {
                 // TODO: Add insert logic here
-                Employee newEmp = new Employee();
+                Employee_bak newEmp = new Employee_bak();
                 int newId = 1;
                 
                 if (empList.Count > 0)
@@ -145,32 +145,32 @@ namespace Banking.Controllers
         }
 
         [NonAction]
-        public List<Employee> GetEmployeeList()
+        public List<Employee_bak> GetEmployeeList()
         {
-            return new List<Employee>
+            return new List<Employee_bak>
             {
-              new Employee{
+              new Employee_bak{
                  ID = 1,
                  Name = "Allan",
                  JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
                  Age = 23
               },
 
-              new Employee{
+              new Employee_bak{
                  ID = 2,
                  Name = "Carson",
                  JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
                  Age = 45
               },
 
-              new Employee{
+              new Employee_bak{
                  ID = 3,
                  Name = "Carson",
                  JoiningDate = DateTime.Parse(DateTime.Today.ToString()),
                  Age = 37
               },
 
-              new Employee{
+              new Employee_bak{
                  ID = 4,
                  Name = "Laura",
                  JoiningDate = DateTime.Parse(DateTime.Today.ToString()),

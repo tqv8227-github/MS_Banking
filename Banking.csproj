@@ -120,13 +120,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\BankerService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountTypeController.cs" />
+    <Compile Include="Controllers\AccountTypesController.cs" />
     <Compile Include="Controllers\BankerController.cs" />
+    <Compile Include="Controllers\BankerTypesController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerTransactionController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TransactionTypesController.cs" />
     <Compile Include="DAL\BankingDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,9 +139,11 @@
     <Compile Include="Models\BankerType.cs" />
     <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Banker.cs" />
+    <Compile Include="Models\BankerView.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerAccountInfo_Vw.cs" />
     <Compile Include="Models\CustomerTransaction.cs" />
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Employee_bak.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -180,6 +186,26 @@
     <Content Include="Views\CustomerTransaction\Details.cshtml" />
     <Content Include="Views\CustomerTransaction\Edit.cshtml" />
     <Content Include="Views\CustomerTransaction\Index.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\AccountTypes\Create.cshtml" />
+    <Content Include="Views\AccountTypes\Delete.cshtml" />
+    <Content Include="Views\AccountTypes\Details.cshtml" />
+    <Content Include="Views\AccountTypes\Edit.cshtml" />
+    <Content Include="Views\AccountTypes\Index.cshtml" />
+    <Content Include="Views\BankerTypes\Create.cshtml" />
+    <Content Include="Views\BankerTypes\Delete.cshtml" />
+    <Content Include="Views\BankerTypes\Details.cshtml" />
+    <Content Include="Views\BankerTypes\Edit.cshtml" />
+    <Content Include="Views\BankerTypes\Index.cshtml" />
+    <Content Include="Views\TransactionTypes\Create.cshtml" />
+    <Content Include="Views\TransactionTypes\Delete.cshtml" />
+    <Content Include="Views\TransactionTypes\Details.cshtml" />
+    <Content Include="Views\TransactionTypes\Edit.cshtml" />
+    <Content Include="Views\TransactionTypes\Index.cshtml" />
+    <Content Include="Views\Banker\Edit - Copy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Banking.Models.Banker>
 
-@{
+@*@{
     Layout = null;
-}
+}*@
 
 <!DOCTYPE html>
 
@@ -12,9 +12,10 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <p>&nbsp;</p>
+        <h4> Banker Home </h4>
+    <p>&nbsp;</p>
+
     <table class="table">
         <tr>
             <th>
@@ -23,9 +24,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.BankerTypeId)
-            </th>
+            </th>*@
+            <th>@Html.DisplayName("Title") </th>
             <th></th>
         </tr>
     
@@ -38,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BankerTypeId)
+                @Html.DisplayFor(modelItem => item.BankerType.Name)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
@@ -49,5 +51,6 @@
     }
     
     </table>
+    <div>@Html.ActionLink("Add new Banker", "Create") || <a href="/">back to Main</a></div>
 </body>
 </html>

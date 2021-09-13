@@ -13,7 +13,7 @@ namespace Banking.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int BankerTypeId { get; set; }
-        public BankerType bankerType { get; set; }
+        public BankerType BankerType { get; set; }
 
     }
 }

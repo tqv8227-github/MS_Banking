@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Banking.Models.CustomerTransaction>
 
-@{
+@*@{
     Layout = null;
-}
+}*@
 
 <!DOCTYPE html>
 
@@ -12,9 +12,10 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <p>&nbsp;</p>
+    <h4> Transaction Home </h4>
+    <p>&nbsp;</p>
+ 
     <table class="table">
         <tr>
             <th>
@@ -31,29 +32,31 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionType.Name)
-            </td>
-            <td>
-                @Html.DisplayName(item.Banker.FirstName+" "+item.Banker.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionType.Name)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Banker.FirstName + " " + item.Banker.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
     </table>
+    <div>@Html.ActionLink("Create New Transaction", "Create") || <a href="/">back to Main</a></a></div>
 </body>
 </html>

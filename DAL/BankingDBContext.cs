@@ -27,6 +27,8 @@ namespace Banking.DAL
 
         public DbSet<TransactionType> TransactionType { get; set; }
 
+        //public DbSet<CustomerAccountInfo_Vw> CustomerAccountInfo_Vw { get; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
